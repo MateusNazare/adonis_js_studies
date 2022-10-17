@@ -22,7 +22,7 @@ test.group('User', () => {
       password: 'test',
       avatar: 'https://images.com/image/1',
     }
-    
+
     const { body } = await supertest(BASE_URL).post('/users').send(userPayload).expect(201)
 
     assert.exists(body.user, 'User undefined')
@@ -30,6 +30,6 @@ test.group('User', () => {
     assert.equal(body.user.email, userPayload.email)
     assert.equal(body.user.username, userPayload.username)
     assert.equal(body.user.avatar, userPayload.avatar)
-    assert.equal(body.user.password, userPayload.password)
+    assert.notEqual(body.user.password, userPayload.password)
   })
 })
